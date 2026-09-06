@@ -7,27 +7,26 @@ public class MissingNumber {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("Enter numbers separated by space: ");
-		String line = sc.nextLine().trim();
+		System.out.print("Enter the size of the array (n): ");
+		int n = sc.nextInt();
 		
-		String[] parts = line.split("\\s+");
-		int[] nums = new int[parts.length];
-		for (int i = 0; i < parts.length; i++) {
-			nums[i] = Integer.parseInt(parts[i]);
+		int[] arr = new int[n - 1];
+		
+		System.out.println("Enter " + (n - 1) + " numbers:");
+		for (int i = 0; i < n - 1; i++) {
+			arr[i] = sc.nextInt();
 		}
 		
-		int missing = findMissingNumber(nums);
-		System.out.println("Missing number: " + missing);
+		int missing = findMissingNumber(arr, n);
+		System.out.println("Missing number is: " + missing);
 		
 		sc.close();
 	}
 	
-	public static int findMissingNumber(int[] nums) {
-		int n = nums.length;
+	public static int findMissingNumber(int[] arr, int n) {
 		int expectedSum = n * (n + 1) / 2;
 		int actualSum = 0;
-		
-		for (int num : nums) {
+		for (int num : arr) {
 			actualSum += num;
 		}
 		
